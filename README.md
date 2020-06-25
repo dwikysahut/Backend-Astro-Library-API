@@ -1,14 +1,25 @@
-# Library App
-project ini adalah project Node.JS dengan framework Express.JS dimana tujuannya adalah membuat RESTfull API
+# Astro Library App
+Astro Library App is a Library Application for find books and borrow the books. This App was built with Node.js using the Express.js Framework. Express.js is one of the popular web frameworks in the Node.js .  [Explore More Express.js](https://en.wikipedia.org/wiki/Express.js)
+
+## Built With
+[![Express.js](https://img.shields.io/badge/Express.js-4.17.1-orange.svg?style=rounded-square)](https://expressjs.com/en/starter/installing.html)
+[![Node.js](https://img.shields.io/badge/Node.js-v12.16.2-green.svg?style=rounded-square)](https://nodejs.org/)
 
 
+## Requirements
+-> <a href="https://nodejs.org/en/download/">Node Js</a>
+-> database (Mysql)
+-> <a href="https://www.getpostman.com/">Postman</a>
+-> Web Server (ex. localhost)
 
 ## Getting Started
-Konsep dari aplikasi ini adalah terdapat 2 jenis user, yaitu admin dan user. dimana saat login akan dibedakan menggunakan authorization dengan JWT, authentication  dengan  membedakan role pada database.
-user dan admin memilik hak akses berbeda dimana user hanyak dapat melihat dan memilih buku, sedangkan admin bisa mengakses database dengan hak akses CRUD.
 
-disini saya menggunakan package morgan yang berfungsi sebagai pencatatan setiap request ke server. 
+The concept of this application is that there are 2 types of users, namely admin and user. where at login will be distinguished using authorization with JWT, authentication by differentiating roles in the database.
+The user and admin have different access rights where only the user can view and select books, while the admin can access the database with CRUD access rights.
 
+In this project I use the Morgan package which serves as recording every request to the server.
+
+Here to Use Morgan
 ```
 var express = require('express')
 var morgan  = require('morgan')
@@ -16,14 +27,13 @@ var morgan  = require('morgan')
 var app = express()
 app.use(morgan())
 ```
-lalu ada nodemon untuk restart otomatis node app ketika code kita ada perubahan jadi tidak perlu restart manual
-
+and then there is a nodemon package to automatically restart the app node when our code changes so there is no need to restart manually
 
 ```
 npm install -g nodemon
 
 ```
-untuk yarn
+If use yarn
 
 
 ```
@@ -31,9 +41,30 @@ yarn add -g nodemon
 
 ```
 
-## Hasil data pada postman
+## Set up .env file
+Open .env file on your code editor, and copy paste this code below :
+```
+SECRET_KEY= //secret key for JsonWebToken
+REFRESH_TOKEN_SECRET= //Refresh Token Secret JsonWebToken
 
-contoh hasil GET
+DB_HOST= localhost
+DB_USER= root
+DB_PASSWORD=
+DB_DATABASE=  //database name
+  
+```
+
+## End Point
+**1. GET**
+* `/notes`
+* `/notes?search=lorem&sort=ASC&limit=5&page=1`
+* `/note/:id` (Get note by id)
+* `/categories`
+* `/categories?search=Diary`
+* `/category/:id` (Get category by id)
+## Results on postman
+
+GET 
 
 
 ```
@@ -52,6 +83,16 @@ contoh hasil GET
         },
 
 ```
+
+## How to run the app ?
+1. Open app's directory in CMD or Terminal
+2. Type `npm install` or `yarn install`
+3. Make new file a called **.env**, set up first [here](#set-up-env-file)
+4. Turn on Web Server and MySQL can using Third-party tool like xampp, etc.
+5. Create a database with the name note, and Import file [note.sql](note.sql) to **phpmyadmin**
+6. Open Postman desktop application or Chrome web app extension that has installed before
+7. Choose HTTP Method and enter request url.(ex. localhost:8080/book)
+8. You can see all the end point [here](#end-point)
 
 ketika menggunakan yarn, maka untuk menjalankan app adalah dengan
 
