@@ -123,7 +123,8 @@ module.exports = {
                     }
                 })
             } else {
-                connection.query('SELECT books.id,books.title,books.description,books.image,genre.id as genre_id,genre.name as genre,author.id as author_id,author.name as author,books.status,books.date_added,books.date_updated FROM books LEFT JOIN author ON author.id=books.author_id INNER JOIN genre ON genre.id=books.genre_id  WHERE title LIKE ?"%" ORDER BY ?? desc  LIMIT ? OFFSET ?', [title,column, limit, startIndex], function(error, result) {
+                connection.query(`SELECT books.id,books.title,books.description,books.image,genre.id as genre_id,genre.name as genre,author.id as author_id,author.name as author,books.status,books.date_added,books.date_updated FROM books LEFT JOIN author ON author.id=books.author_id INNER JOIN genre ON genre.id=books.genre_id  WHERE title LIKE "%${title}%" OR  genre.name LIKE "%${title}%" ORDER BY ?? desc  LIMIT ? OFFSET ?`, [column, limit, startIndex], function(error, result) {
+
                     if (!error) {
                         resolve(result)
                     } else {

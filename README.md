@@ -1,5 +1,5 @@
 # Astro Library App
-Astro Library App is a Library Application for find books and borrow the books. This App was built with Node.js using the Express.js Framework. Express.js is one of the popular web frameworks in the Node.js .  [Explore More Express.js](https://en.wikipedia.org/wiki/Express.js)
+Astro Library App is a Library Application for find books and borrow the books. This App was a RESTfull API for Astro Libray Web And Mobile built with Node.js using the Express.js Framework. Express.js is one of the popular web frameworks in the Node.js .  [Explore More Express.js](https://en.wikipedia.org/wiki/Express.js)
 
 ## Built With
 [![Express.js](https://img.shields.io/badge/Express.js-4.17.1-orange.svg?style=rounded-square)](https://expressjs.com/en/starter/installing.html)
@@ -44,25 +44,49 @@ yarn add -g nodemon
 ## Set up .env file
 Open .env file on your code editor, and copy paste this code below :
 ```
-SECRET_KEY= //secret key for JsonWebToken
-REFRESH_TOKEN_SECRET= //Refresh Token Secret JsonWebToken
+SECRET_KEY=passwordkuaneh
+REFRESH_TOKEN_SECRET=anehpasswordku
 
 DB_HOST= localhost
 DB_USER= root
 DB_PASSWORD=
-DB_DATABASE=  //database name
+DB_DATABASE= libraryapp-api
   
 ```
-
 ## End Point
-**1. GET**
-* `/notes`
-* `/notes?search=lorem&sort=ASC&limit=5&page=1`
-* `/note/:id` (Get note by id)
-* `/categories`
-* `/categories?search=Diary`
-* `/category/:id` (Get category by id)
-## Results on postman
+**GET**
+* `/book`
+* `/book?page=1&limit=6&orderBy=asc&sortBy=id&title=`
+* `/data/author`
+* `/data/genre`
+* `/book/borrow/user`
+* `/book/borrow/list`(for all user)
+* `/auth/user` 
+* `/auth/user/all` 
+
+**POST**
+* `/book`
+* `book/borrow/use/:idr`
+* `/data/author`
+* `/data/genre`
+* `/auth/register`
+* `/auth/login`
+* `/book/borrow/user/:id`
+
+**PUT**
+* `/book/edit/:id`
+* `/data/author/:id`
+* `/data/genre/:id`
+* `/auth/register`
+* `/auth/login`
+* `/book/borrow/:id`
+
+**DELETE**
+* `/book/:id`
+* `/data/author/:id`
+* `/data/genre/:id`
+* `/auth/delete/logout` (logout and delete Token)
+* `/user/delete/:id` (delete user by id)
 
 GET 
 
@@ -83,25 +107,40 @@ GET
         },
 
 ```
+# Packages
+- express
+- mysql
+- body-parser
+- morgan
+- multer
+- nodemon
+- cors
+- jsonwebtoken
+- md5
+- dotenv
+
 
 ## How to run the app ?
+Clone this repository, then :
 1. Open app's directory in CMD or Terminal
 2. Type `npm install` or `yarn install`
 3. Make new file a called **.env**, set up first [here](#set-up-env-file)
-4. Turn on Web Server and MySQL can using Third-party tool like xampp, etc.
-5. Create a database with the name note, and Import file [note.sql](note.sql) to **phpmyadmin**
+4.Turn on Web Server and MySQL can using Third-party tool like xampp, etc.
+5. Create a database with the name note, and Import file [ librarapp-api.sql](librarapp-api.sql) to **phpmyadmin**
 6. Open Postman desktop application or Chrome web app extension that has installed before
 7. Choose HTTP Method and enter request url.(ex. localhost:8080/book)
 8. You can see all the end point [here](#end-point)
 
-ketika menggunakan yarn, maka untuk menjalankan app adalah dengan
+if use yarn , type this to start server
 
 
 ```
 yarn start
 
+
+
 ```
-untuk mengupload image menggunakan multer
+this package use for upload image with multer
 
 
 ```

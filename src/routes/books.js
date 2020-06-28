@@ -11,7 +11,7 @@ const uploadImage = require('../helpers/imageUpload')
 
 Route
 //authorization book dihilangkan dlu
-    .get('/',  booksController.getBooks)
+    .get('/',  booksController.getBooks) // main route for get data books
     .get('/detail/:id',authorization, booksController.getBookById)
     .get('/detail/item/:id',authorization, booksController.getDetailBook)
    
