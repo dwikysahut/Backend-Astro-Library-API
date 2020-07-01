@@ -7,10 +7,10 @@ Astro Library App is a Library Application for find books and borrow the books. 
 
 
 ## Requirements
--> <a href="https://nodejs.org/en/download/">Node Js</a>
--> database (Mysql)
--> <a href="https://www.getpostman.com/">Postman</a>
--> Web Server (ex. localhost)
+1. <a href="https://nodejs.org/en/download/">Node Js</a>
+2. database (Mysql)
+3. <a href="https://www.getpostman.com/">Postman</a>
+4. Web Server (ex. localhost)
 
 ## Getting Started
 
