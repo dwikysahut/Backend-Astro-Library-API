@@ -9,7 +9,7 @@ Route
 
 .get('/genre/detail/:id', authorization, authentication, genreController.getGenreById)
 //authentication di get ku hilangin sementara untuk redux
-.get('/genre', authorization, genreController.getGenre)
+.get('/genre', genreController.getGenre)
     .post('/genre', authorization, authentication, genreController.postGenre)
     .put('/genre/:id', authorization, authentication, genreController.putGenre)
     .delete('/genre/:id', authorization, authentication, genreController.deleteGenre)
