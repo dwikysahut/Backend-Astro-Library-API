@@ -36,36 +36,6 @@ module.exports = {
         }
 
     },
-    // postAdmin: async function(request, response) {
-    //     try {
-
-
-    //         const setData = request.body
-    //         setData.email=request.body.email
-    //         setData.password=request.body.password
-    //         const emailExist = await authModel.getUserbyEmail(setData.email)
-    //         console.log(emailExist)
-    //         if (emailExist.email === undefined) {
-                
-    //             return helper.response(response, 401,{message:"you're not admin"})
-
-
-    //         }
-    //         else if(emailExist.role==1){
-    //         const result = await authModel.putAdmin(setData.password,setData.email)
-    //         return helper.response(response, 200, result)
-    //     }
-    //     else{
-    //         return helper.response(response, 401,{message:"you're not admin"})
-
-    //     }
-    //     } catch (error) {
-    //         console.log(errors)
-    //         return helper.response(response, 500, error)
-
-    //     }
-
-    // },
     postUser: async function(request, response) {
         try {
 
@@ -104,7 +74,7 @@ module.exports = {
             console.log(getData.password)
         
             const result = await authModel.postLogin(getData)
-            console.log(result)
+            // console.log(result)
             if (result === undefined) {
                 return helper.response(response, 204, { message: "Username or password is incorrect" })
 
@@ -150,7 +120,7 @@ module.exports = {
                     return helper.response(response, 403, { message: error.name })
                 } else {
 
-                    const token = jwt.sign({ result }, process.env.SECRET_KEY, { expiresIn: '6h' })
+                    const token = jwt.sign({ result }, process.env.SECRET_KEY, { expiresIn: '2d' })
 
                     return helper.response(response, 200, { token })
 

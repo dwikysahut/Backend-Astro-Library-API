@@ -151,18 +151,6 @@ GET Book response
             "id": 2,
             "name": "Romance"
         },
-        {
-            "id": 5,
-            "name": "Non Fiction"
-        },
-        {
-            "id": 65,
-            "name": "Horror"
-        },
-        {
-            "id": 66,
-            "name": "Fabel"
-        },
 ```
 
 * `/book/borrow/user`
@@ -189,61 +177,6 @@ GET Book response
             "imageBook": "image-1593068233645.jpg",
             "borrow_at": "2020-06-15T07:02:25.000Z",
             "return_at": "2020-06-30T16:49:46.000Z",
-            "status": "Returned"
-        },
-        {
-            "id_user": 4,
-            "id": 204,
-            "user_email": "kita@gmail.com",
-            "id_book": 1,
-            "title": "Harry Potter and the Philosopher's Stone",
-            "imageBook": "image-1593068233645.jpg",
-            "borrow_at": "2020-06-15T06:48:26.000Z",
-            "return_at": "2020-06-15T06:48:59.000Z",
-            "status": "Returned"
-        },
-        {
-            "id_user": 4,
-            "id": 202,
-            "user_email": "kita@gmail.com",
-            "id_book": 1,
-            "title": "Harry Potter and the Philosopher's Stone",
-            "imageBook": "image-1593068233645.jpg",
-            "borrow_at": "2020-06-12T15:09:10.000Z",
-            "return_at": "2020-06-12T15:10:21.000Z",
-            "status": "Returned"
-        },
-        {
-            "id_user": 4,
-            "id": 203,
-            "user_email": "kita@gmail.com",
-            "id_book": 2,
-            "title": "Harry Potter and the Chamber of Secret",
-            "imageBook": "image-1591467680410.jpg",
-            "borrow_at": "2020-06-12T15:09:34.000Z",
-            "return_at": "2020-06-12T15:09:54.000Z",
-            "status": "Returned"
-        },
-        {
-            "id_user": 4,
-            "id": 201,
-            "user_email": "kita@gmail.com",
-            "id_book": 209,
-            "title": "dddd",
-            "imageBook": "image-1591519019498.jpg",
-            "borrow_at": "2020-06-12T15:07:23.000Z",
-            "return_at": "2020-06-12T15:07:51.000Z",
-            "status": "Returned"
-        },
-        {
-            "id_user": 4,
-            "id": 200,
-            "user_email": "kita@gmail.com",
-            "id_book": 1,
-            "title": "Harry Potter and the Philosopher's Stone",
-            "imageBook": "image-1593068233645.jpg",
-            "borrow_at": "2020-06-12T15:02:44.000Z",
-            "return_at": "2020-06-12T15:03:14.000Z",
             "status": "Returned"
         },
 ```
@@ -274,71 +207,8 @@ GET Book response
             "return_at": "2020-07-01T04:36:11.000Z",
             "status": "Returned"
         },
-        {
-            "id_user": 177,
-            "id": 143,
-            "user_email": "aaa@gmail.com",
-            "id_book": 2,
-            "title": "Harry Potter and the Chamber of Secret",
-            "imageBook": "image-1591467680410.jpg",
-            "borrow_at": "2020-06-08T04:32:11.000Z",
-            "return_at": "2020-07-01T04:36:19.000Z",
-            "status": "Returned"
-        },
-        {
-            "id_user": 4,
-            "id": 141,
-            "user_email": "kita@gmail.com",
-            "id_book": 1,
-            "title": "Harry Potter and the Philosopher's Stone",
-            "imageBook": "image-1593068233645.jpg",
-            "borrow_at": "2020-06-08T04:12:06.000Z",
-            "return_at": "2020-07-01T04:36:11.000Z",
-            "status": "Returned"
-        },
 ```
 
-* `/auth/user` 
-
-```
-"status": 200,
-    "data": [
-        {
-            "id": 1,
-            "email": "dwikysahut@gmail.com",
-            "role": 1
-        },
-        {
-            "id": 2,
-            "email": "kamu@gmail.com",
-            "role": 1
-        },
-        {
-            "id": 3,
-            "email": "mereka@gmail.com",
-            "role": 1
-        },
-        {
-            "id": 4,
-            "email": "kita@gmail.com",
-            "role": 2
-        },
-        {
-            "id": 5,
-            "email": "sriasih@gmail.com",
-            "role": 1
-        },
-        {
-            "id": 6,
-            "email": "arkademy@gmail.com",
-            "role": 1
-        },
-        {
-            "id": 7,
-            "email": "satria@gmail.com",
-            "role": 1
-        },
-```
 
 **POST**
 * `/book`
@@ -485,14 +355,6 @@ GET Book response
 DELETE /auth/logout 200 0.826 ms - 19
 ```
 logout Successfully
-```
-
-* `/user/delete/:id` (delete user by id)
-```
- "status": 200,
-    "data": {
-        "id": "143"
-    }
 ```
 
 # Packages
