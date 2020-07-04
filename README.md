@@ -369,6 +369,8 @@ logout Successfully
 - md5
 - dotenv
 
+## Related Project (Mobile App)
+* [`Astro-Library-Mobile`](https://github.com/dwikysahut/Astro-Library-Mobile)
 
 ## Authors
 
