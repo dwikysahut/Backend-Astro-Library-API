@@ -80,7 +80,7 @@ module.exports = {
 
             } else {
                 //token structure: header,payload,verify signature
-                const token = jwt.sign({ result }, process.env.SECRET_KEY, { expiresIn: '20h' })
+                const token = jwt.sign({ result }, process.env.SECRET_KEY, { expiresIn: '1d' })
                 const refreshToken = jwt.sign({ result }, refreshTokenSecret,{ expiresIn: '20h'})
                 const newData = {
                     ...result,

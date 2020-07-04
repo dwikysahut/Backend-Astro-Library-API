@@ -191,6 +191,9 @@ module.exports = {
 
 
         try {
+            const id = request.params.id
+
+            const book = await booksModels.getBookByIdDelete(id)
             const setData = request.body
             if (request.file) {
                 if (request.file.filename === "undefined") {
@@ -198,11 +201,16 @@ module.exports = {
                 }
                 else {
                     setData.image = request.file.filename
+                    try {
+                        await booksModels.deleteImageBook(book[0].image)
+                            
+                        } catch (error) {
+                            console.log('no image book file')
+                        }
                 }
             }
-           
+          
 
-            const id = request.params.id
           
             const result = await booksModels.putBook(setData, id)
             const data = await booksModels.getBookById(id)
@@ -233,8 +241,12 @@ module.exports = {
              
          
                 helper.deleteFile(book[0])
-
+                try {
                 await booksModels.deleteImageBook(book[0].image)
+                    
+                } catch (error) {
+                    console.log('no image book file')
+                }
 
                 const result = await booksModels.deleteBook(id)
 
