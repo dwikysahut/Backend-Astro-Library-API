@@ -170,7 +170,7 @@ module.exports = {
     },
     getCountSearch: function(title) {
         return new Promise(function(resolve, reject) {
-            connection.query('SELECT COUNT(*) as count from books WHERE title LIKE ?"%"', title, function(error, result) {
+            connection.query(`SELECT COUNT(*) as count from books INNER JOIN genre ON genre.id=books.genre_id  WHERE title LIKE "%${title}%" OR  genre.name LIKE "%${title}%"`, title, function(error, result) {
                 if (!error) {
                     resolve(result[0].count)
                 } else {
