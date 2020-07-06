@@ -372,6 +372,8 @@ logout Successfully
 ## Related Project (Mobile App)
 * [`Astro-Library-Mobile`](https://github.com/dwikysahut/Astro-Library-Mobile)
 
+
+* [`Astro-Library-Web`](https://github.com/dwikysahut/Astro-Library-Web-App)
 ## Authors
 
 * Dwiky satria hutomo
