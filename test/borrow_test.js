@@ -5,7 +5,7 @@ chai.use(chaiHttp);
 chai.should();
 let token='';
 describe('Borrow.js',()=>{
-    describe('/auth/login',()=>{
+    describe('/auth/login',async ()=>{
         const userCredentials = {
             email: 'kita@gmail.com',
             password: 'kitakita'
@@ -20,6 +20,7 @@ describe('Borrow.js',()=>{
             // done();
             })
         })
+        // if(token){
         describe('/book/borrow/user',()=>{
             it('should return success get borrow by user',()=>{
                 chai.request(app)
@@ -48,6 +49,7 @@ describe('Borrow.js',()=>{
             })
     
         })
+    // }
         //borrow book
         describe('/book/borrow/user/:id',()=>{
             it('should return failed borrow book, unavailable status',()=>{

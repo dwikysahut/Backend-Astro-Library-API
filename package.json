@@ -7,7 +7,7 @@
         "start": "nodemon app.js",
         "test": "mocha test/ --recursive --exit",
         "coverage": "nyc --reporter=lcov --reporter=text-lcov yarn test",
-        "cover": "nyc --reporter=html --reporter=text mocha --recursive --exit"
+        "cover": "nyc mocha test/ --recursive --exit"
     },
     "author": "",
     "license": "ISC",

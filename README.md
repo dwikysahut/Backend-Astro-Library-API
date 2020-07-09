@@ -1,5 +1,5 @@
 # Astro Library App
-Astro Library App is a Library Application for find books and borrow the books. This App was a RESTfull API for Astro Libray Web And Mobile built with Node.js using the Express.js Framework. Express.js is one of the popular web frameworks in the Node.js .  [Explore More Express.js](https://en.wikipedia.org/wiki/Express.js)
+Astro Library App is a Library Application for find books and borrow the books. This App was a RESTfull API for Astro Libray Web And Mobile built with Node.js using the Express.js Framework. Express.js is one of the popular web frameworks in the Node.js .  [Explore More Express.js](https://en.wikipedia.org/wiki/Express.js). This RESTful API was tested using mocha and chai with more than 30% of coverage, also with istanbul code coverage
 
 ## Built With
 [![Express.js](https://img.shields.io/badge/Express.js-4.17.1-orange.svg?style=rounded-square)](https://expressjs.com/en/starter/installing.html)
@@ -82,6 +82,15 @@ DB_PASSWORD=
 DB_DATABASE= libraryapp-api
   
 ```
+
+## Screenshots Coverage
+  
+<div align="center">
+  <img width="500" src="./src/assets/Screen Shot 2020-07-09 at 09.28.44.png">
+  <img width="500" src="./src/assets/Screen Shot 2020-07-09 at 09.41.39.png">
+
+</div>
+
 ## End Point
 **GET**
 * `/book`
@@ -369,13 +378,6 @@ logout Successfully
 - md5
 - dotenv
 
-## Screenshots Coverage
-  
-<div align="center">
-  <img width="500" src="./src/assets/Screen Shot 2020-07-09 at 09.28.44.png">
-  <img width="500" src="./src/assets/Screen Shot 2020-07-09 at 09.41.39.png">
-
-</div>
 
 ## Related Project (Mobile App)
 * [`Astro-Library-Mobile`](https://github.com/dwikysahut/Astro-Library-Mobile)
