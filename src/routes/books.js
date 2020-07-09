@@ -12,8 +12,8 @@ const uploadImage = require('../helpers/imageUpload')
 Route
 //authorization book dihilangkan dlu
     .get('/',  booksController.getBooks) // main route for get data books
-    .get('/detail/:id',authorization, booksController.getBookById)
-    .get('/detail/item/:id',authorization, booksController.getDetailBook)
+    .get('/detail/:id', booksController.getBookById)
+    .get('/detail/item/:id', booksController.getDetailBook)
    
     .post('/', authorization, authentication, uploadImage, booksController.postBook)
     //AUNTHENTICATION DI PUT DIHILANGKAN UNTUK BORROW

@@ -369,6 +369,14 @@ logout Successfully
 - md5
 - dotenv
 
+## Screenshots Coverage
+  
+<div align="center">
+  <img width="500" src="./src/assets/Screen Shot 2020-07-09 at 09.28.44.png">
+  <img width="500" src="./src/assets/Screen Shot 2020-07-09 at 09.41.39.png">
+
+</div>
+
 ## Related Project (Mobile App)
 * [`Astro-Library-Mobile`](https://github.com/dwikysahut/Astro-Library-Mobile)
 

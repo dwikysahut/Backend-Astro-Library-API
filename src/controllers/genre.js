@@ -19,15 +19,17 @@ module.exports = {
 
 
         try {
-
-
-
             const id = request.params.id
            
             const result = await dataModels.getDataById('genre',id)
 
-            return helper.response(response, 200, result)
+            if(result){
+                return helper.response(response, 200, result)
 
+            }
+            else{
+                return helper.response(response, 404, result, null, 'no genre found')
+            }
         } catch (error) {
             console.log(error)
 
@@ -44,7 +46,7 @@ module.exports = {
             return helper.response(response, 200, result)
 
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             return helper.response(response, 500, error)
 
         }
@@ -73,7 +75,13 @@ module.exports = {
             if(check===undefined){
                
                 const result = await dataModels.deleteData('genre', id)
-            return helper.response(response, 200, result)
+                if(result.affectedRows!==0){
+                    return helper.response(response, 200, result)
+    
+                }
+                else{
+                    return helper.response(response, 404, result, null, 'failed to delete, genre not found')
+                }
             }
          
            

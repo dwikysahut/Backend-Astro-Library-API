@@ -1,11 +1,14 @@
 const fs = require('fs')
 
 module.exports = {
-    response: function(response, status, data, pagination) {
+    response: function(response, status, data, pagination,message) {
+      
         const result = {}
+        result.message= message
         result.status = status || 200
         result.data = data
-        result.pagination = pagination
+      if(pagination!==null)  result.pagination = pagination
+       
 
 
 

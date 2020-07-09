@@ -113,10 +113,14 @@ module.exports = {
                 orderBy:sort
 
             }
-          
+          try {
             const result = await booksModels.getSortBook(title, limit, startIndex, column, sort)
-
             return helper.response(response, 200, result, pagination)
+              
+          } catch (error) {
+            //   console.log(error);
+          }
+
 
         } catch (error) {
             console.log(error)
@@ -131,13 +135,17 @@ module.exports = {
 
         try {
 
-
-
             const id = request.params.id
 
             const result = await booksModels.getBookById(id)
+            if(result){
+                return helper.response(response, 200, result, null, 'success get book by id')
 
-            return helper.response(response, 200, result)
+            }
+            else{
+                return helper.response(response, 404, result, null, 'no book found')
+
+            }
 
         } catch (error) {
             console.log(error)

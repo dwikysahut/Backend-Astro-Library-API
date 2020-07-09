@@ -110,13 +110,15 @@ module.exports = {
             const borrow = request.params.id
             const setData=request.body.status
             const status={status:'Returned'}
-            const bookReturn=await borrowModels.getbBorrowById(borrow)
-             id_book = bookReturn.id_book
-  
-            if(id_book===undefined){
+            try {
+                const bookReturn=await borrowModels.getbBorrowById(borrow)
+                id_book = bookReturn.id_book
+            } catch (error) {
                 return helper.response(response, 500, {message: "data not found"})
             }
-            console.log(bookReturn.id_book)
+           
+  
+            // console.log(bookReturn.id_book)
             const result = await borrowModels.putBorrow(status,borrow)
             await borrowModels.returnBook(bookReturn.id_book)
          const data=   await borrowModels.getDataBorrowById(result.id)

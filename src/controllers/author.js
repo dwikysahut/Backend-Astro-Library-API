@@ -26,11 +26,17 @@ module.exports = {
             const id = request.params.id
            
             const result = await dataModels.getDataById('author',id)
+            if(result){
+                return helper.response(response, 200, result)
 
-            return helper.response(response, 200, result)
+            }
+            else{
+                return helper.response(response, 404, result, null, 'no author found')
+            }
+
 
         } catch (error) {
-            console.log(error)
+            // console.log(error)
 
             return helper.response(response, 500, error)
 
@@ -72,7 +78,14 @@ module.exports = {
             if(check===undefined){
                
                 const result = await dataModels.deleteData('author', id)
-                return helper.response(response, 200, result)
+                if(result.affectedRows!==0){
+                    return helper.response(response, 200, result)
+    
+                }
+                else{
+                    return helper.response(response, 404, result, null, 'failed to delete, author not found')
+                }
+               
             }
          
 
@@ -80,6 +93,7 @@ module.exports = {
             return helper.response(response, 500, {message:"Delete failed, data have relations with Books"})}
 
         } catch (error) {
+            console.log(error)
             return helper.response(response, 500, error)
 
         }
