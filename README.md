@@ -76,6 +76,7 @@ Open .env file on your code editor, and copy paste this code below :
 SECRET_KEY=passwordkuaneh
 REFRESH_TOKEN_SECRET=anehpasswordku
 
+PORT = YOUR_CHOOSEN_PORT
 DB_HOST= localhost
 DB_USER= root
 DB_PASSWORD=
