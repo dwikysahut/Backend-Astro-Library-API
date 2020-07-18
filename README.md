@@ -1,5 +1,5 @@
 # Astro Library App
-Astro Library App is a Library Application for find books and borrow the books. This App was a RESTfull API for Astro Libray Web And Mobile built with Node.js using the Express.js Framework. Express.js is one of the popular web frameworks in the Node.js .  [Explore More Express.js](https://en.wikipedia.org/wiki/Express.js). This RESTful API was tested using mocha and chai with more than 30% of coverage, also with istanbul code coverage
+Astro Library App is a Library Application for find books and borrow the books. This App was a RESTfull API for Astro Libray Web And Mobile built with Node.js using the Express.js Framework. Express.js is one of the popular web frameworks in the Node.js .  [Explore More Express.js](https://en.wikipedia.org/wiki/Express.js). Also use Redis for Caching. So, the data retrieval process is faster . This RESTful API was tested using mocha and chai with more than 30% of coverage, also with istanbul code coverage
 
 ## Built With
 [![Express.js](https://img.shields.io/badge/Express.js-4.17.1-orange.svg?style=rounded-square)](https://expressjs.com/en/starter/installing.html)
