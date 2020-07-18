@@ -3,8 +3,17 @@ const app = express()
 const bodyParser = require('body-parser');
 const morgan = require('morgan')
 const cors = require('cors')
+require('dotenv').config();
+const conn = require("./src/config/redisConn")
 
 const routeNavigator = require('./src/index')
+conn.redisCheck()
+    .then((res) => {
+        console.log(res)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
 const server = app.listen(process.env.PORT, "0.0.0.0", function() {
     const host = server.address().address
     const port = server.address().port

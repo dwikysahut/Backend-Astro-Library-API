@@ -134,7 +134,27 @@ module.exports = {
             const setData=request.body.status
             const status={status:'Returned'}
             // const email= request.token.result.email;
-           
+            // await redis.keys('*', async function (err, keys) {
+            //     if (err) return console.log(err);
+            //     for(let i = 0; i < keys.length ; i++) {
+                   
+            //        await redis.del(keys[i],(err, success) => {
+            //             if(success){
+            //                 console.log('success')
+            //             }
+            //             else{
+            //                 console.log('error')
+            //             }
+            //         })
+            //     }
+            
+            //   });  
+            redis.flushall((err, success) => {
+                if (err) {
+                  throw new Error(err);
+                }
+                console.log(success); 
+              });
             const bookReturn=await borrowModels.getbBorrowById(borrow)
 
             // try {
@@ -144,21 +164,7 @@ module.exports = {
             //     return helper.response(response, 500, {message: "data not found"})
             // }
            
-            redis.keys('*', function (err, keys) {
-                if (err) return console.log(err);
-                for(let i = 0; i < keys.length ; i++) {
-                   
-                    redis.del(keys[i],(err, success) => {
-                        if(success){
-                            console.log('success')
-                        }
-                        else{
-                            console.log('error')
-                        }
-                    })
-                }
-            
-              });  
+         
             // console.log(bookReturn.id_book)
             const result = await borrowModels.putBorrow(status,borrow)
            

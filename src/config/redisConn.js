@@ -1,9 +1,13 @@
 const redis = require("redis");
-const { response } = require("express");
+// const { response } = require("express");
 
 class dbConnect{
-    constructor(){
-        this.clinet=redis.createClient({});
+    constructor() {
+        this.clinet = redis.createClient({
+            host: process.env.REDISHOST,
+            port: process.env.REDISPORT,
+            password: process.env.REDISPASS,
+        })
     }
 
     redisCheck(){
