@@ -245,14 +245,22 @@ module.exports = {
             }
           
 
-            redis.flushall((err, success) => {
-                if(success){
-                    console.log('success')
+            redis.keys('*', function (err, keys) {
+                if (err) return console.log(err);
+                for(let i = 0; i < keys.length ; i++) {
+                    console.log(keys[i].slice(0,4))
+                    if(keys[i].slice(0,4)==="page"){
+                    redis.del(keys[i],(err, success) => {
+                        if(success){
+                            console.log('success')
+                        }
+                        else{
+                            console.log('error')
+                        }
+                    })
                 }
-                else{
-                    console.log('error')
-                }
-            })
+            }
+              });  
             const result = await booksModels.putBook(setData, id)
             const data = await booksModels.getBookById(id)
             return helper.response(response, 200, {result,data})
