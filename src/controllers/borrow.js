@@ -3,11 +3,15 @@ const helper = require('../helpers')
 const express = require('express')
 const jwt = require('jsonwebtoken')
 const bookModels = require('../models/books')
+const redis = require("../config/redisConn").clinet
 
 module.exports = {
     getBorrow: async function(request, response) {
         try {
+            const email= request.token.result.email;
             const result = await borrowModels.getBorrow()
+            const data = JSON.stringify(result)
+            redis.setex(email, 3600, data)
             return helper.response(response, 200, result)
 
         } catch (error) {
@@ -21,6 +25,7 @@ module.exports = {
     getUserBorrow: async function(request, response) {
         try {
             var user_id = 0
+            const email= request.token.result.email;
             if(request.token.result.id===undefined){
                 user_id = request.token.result.result.id
               
@@ -32,6 +37,8 @@ module.exports = {
          
             console.log(user_id)
             const result = await borrowModels.getUserBorrow(user_id)
+            const data = JSON.stringify(result)
+            redis.setex(email, 3600, data)
             return helper.response(response, 200, result)
 
         } catch (error) {
@@ -44,6 +51,7 @@ module.exports = {
     },
     addBorrow: async function(request, response) {
         var user_id = 0
+        const email= request.token.result.email;
          
          
         try {
@@ -64,6 +72,21 @@ module.exports = {
 
  
             }
+            redis.keys('*', function (err, keys) {
+                if (err) return console.log(err);
+                for(let i = 0; i < keys.length ; i++) {
+                   
+                    redis.del(keys[i],(err, success) => {
+                        if(success){
+                            console.log('success')
+                        }
+                        else{
+                            console.log('error')
+                        }
+                    })
+                }
+            
+              });  
             console.log("asdass"+request.token.result.id)
             const result = await borrowModels.addBorrow(user_id, book_id)
             const data = await borrowModels.getDataBorrowById(result.id)
@@ -110,17 +133,37 @@ module.exports = {
             const borrow = request.params.id
             const setData=request.body.status
             const status={status:'Returned'}
-            try {
-                const bookReturn=await borrowModels.getbBorrowById(borrow)
-                id_book = bookReturn.id_book
-            } catch (error) {
-                return helper.response(response, 500, {message: "data not found"})
-            }
+            // const email= request.token.result.email;
            
-  
+            const bookReturn=await borrowModels.getbBorrowById(borrow)
+
+            // try {
+            //      bookReturn=await borrowModels.getbBorrowById(borrow)
+            //     id_book = bookReturn.id_book
+            // } catch (error) {
+            //     return helper.response(response, 500, {message: "data not found"})
+            // }
+           
+            redis.keys('*', function (err, keys) {
+                if (err) return console.log(err);
+                for(let i = 0; i < keys.length ; i++) {
+                   
+                    redis.del(keys[i],(err, success) => {
+                        if(success){
+                            console.log('success')
+                        }
+                        else{
+                            console.log('error')
+                        }
+                    })
+                }
+            
+              });  
             // console.log(bookReturn.id_book)
             const result = await borrowModels.putBorrow(status,borrow)
+           
             await borrowModels.returnBook(bookReturn.id_book)
+                
          const data=   await borrowModels.getDataBorrowById(result.id)
             return helper.response(response, 200,data)
 

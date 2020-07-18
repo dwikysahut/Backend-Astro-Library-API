@@ -4,6 +4,7 @@ const Route = express.Router()
 const { authorization } = require('../middleware/auth')
 const { authentication } = require('../middleware/authen')
 const booksController = require('../controllers/books')
+const midd = require('../middleware/Caching')
 
 const path = require('path');
 const uploadImage = require('../helpers/imageUpload')
@@ -11,7 +12,7 @@ const uploadImage = require('../helpers/imageUpload')
 
 Route
 //authorization book dihilangkan dlu
-    .get('/',  booksController.getBooks) // main route for get data books
+    .get('/',midd.getBooks,  booksController.getBooks) // main route for get data books
     .get('/detail/:id', booksController.getBookById)
     .get('/detail/item/:id', booksController.getDetailBook)
    

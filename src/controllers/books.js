@@ -1,6 +1,7 @@
 const booksModels = require('../models/books')
 const helper = require('../helpers')
 const borrowModels = require('../models/borrow')
+const redis = require("../config/redisConn").clinet
 
 module.exports = {
 
@@ -114,11 +115,19 @@ module.exports = {
 
             }
           try {
+            const key=`page=${page.toString()}+limit=${limit.toString()}+sort=${sort}+column=${column}+title=${title}`;
+
             const result = await booksModels.getSortBook(title, limit, startIndex, column, sort)
+            const redisValue = {
+                result,
+                pagination
+            }
+            const data = JSON.stringify(redisValue)
+            redis.setex(key, 3600, data)
             return helper.response(response, 200, result, pagination)
               
           } catch (error) {
-            //   console.log(error);
+              console.log(error);
           }
 
 
@@ -186,8 +195,25 @@ module.exports = {
             setData.image = request.file.filename
             const result = await booksModels.postBook(setData)
             const data = await booksModels.getBookById(result.id)
+            
+            redis.keys('*', function (err, keys) {
+                if (err) return console.log(err);
+                for(let i = 0; i < keys.length ; i++) {
+                    console.log(keys[i].slice(0,4))
+                    if(keys[i].slice(0,4)==="page"){
+                    redis.del(keys[i],(err, success) => {
+                        if(success){
+                            console.log('success')
+                        }
+                        else{
+                            console.log('error')
+                        }
+                    })
+                }
+            }
+              });  
+          
             return helper.response(response, 200, {result,data})
-
         } catch (error) {
             console.log(error)
             return helper.response(response, 500, { message: error.name })
@@ -219,7 +245,14 @@ module.exports = {
             }
           
 
-          
+            redis.flushall((err, success) => {
+                if(success){
+                    console.log('success')
+                }
+                else{
+                    console.log('error')
+                }
+            })
             const result = await booksModels.putBook(setData, id)
             const data = await booksModels.getBookById(id)
             return helper.response(response, 200, {result,data})
@@ -238,7 +271,31 @@ module.exports = {
              console.log('dassas'+book[0].image)
             console.log(book.image)
             await borrowModels.deleteBorrowByBookId(id)
-         
+            // redis.flushall((err, success) => {
+            //     if(success){
+            //         console.log('success')
+            //     }
+            //     else{
+            //         console.log('error')
+            //     }
+            // })
+            redis.keys('*', function (err, keys) {
+                if (err) return console.log(err);
+                for(let i = 0; i < keys.length ; i++) {
+                    console.log(keys[i].slice(0,4))
+                    if(keys[i].slice(0,4)==="page"){
+                    redis.del(keys[i],(err, success) => {
+                        if(success){
+                            console.log('success')
+                        }
+                        else{
+                            console.log('error')
+                        }
+                    })
+                }
+            }
+              });  
+          
             if (book[0].image === undefined) {
                 
               

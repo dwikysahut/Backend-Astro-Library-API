@@ -5,7 +5,7 @@ const morgan = require('morgan')
 const cors = require('cors')
 
 const routeNavigator = require('./src/index')
-const server = app.listen(8080, "0.0.0.0", function() {
+const server = app.listen(process.env.PORT, "0.0.0.0", function() {
     const host = server.address().address
     const port = server.address().port
 
