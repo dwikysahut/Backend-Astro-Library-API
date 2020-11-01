@@ -149,7 +149,7 @@ module.exports = {
             //     }
             
             //   });  
-            redis.flushall((err, success) => {
+            redis.flushdb((err, success) => {
                 if (err) {
                   throw new Error(err);
                 }

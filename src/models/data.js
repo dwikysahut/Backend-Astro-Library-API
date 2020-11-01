@@ -47,7 +47,7 @@ module.exports = {
                 if (!error) {
                     const newData = {
                      
-                        id: id,
+                        id: parseInt(id),
                         ...setData //array spread
                     }
                     resolve(newData)

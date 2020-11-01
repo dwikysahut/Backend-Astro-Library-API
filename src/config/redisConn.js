@@ -6,7 +6,6 @@ class dbConnect{
         this.clinet = redis.createClient({
             host: process.env.REDISHOST,
             port: process.env.REDISPORT,
-            password: process.env.REDISPASS,
         })
     }
 
