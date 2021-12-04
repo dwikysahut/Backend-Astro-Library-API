@@ -25,7 +25,7 @@ function checkFileType(file, cb) {
     const filetypes = /jpeg|jpg|png|gif/;
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
     const mimeType = filetypes.test(file.mimetype)
-    if(extname && mimeType){
+    if (extname && mimeType) {
         return cb(null, true)
     } else {
         console.log(file)
@@ -35,15 +35,11 @@ function checkFileType(file, cb) {
     //     return cb(null, true);
     // } else {
     //     cb('Error: Images Only!');
-       
 
     // }
 }
 
 module.exports = upload.single('image');
-
-
-
 
 // limits: { fileSize: 1000024 },
 
